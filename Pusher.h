@@ -56,7 +56,7 @@ typedef struct _PusherContent{
 
 class Pusher {
 public:
-	Pusher(string cerFileName);
+	Pusher(string cerFileName, string passWord);
 	virtual ~Pusher();
     
 	bool isSandBox;
@@ -66,6 +66,7 @@ public:
     
 private:
 	string _cerFileName;
+	string _passWord;
 	vector<string> tokenStringVector;
     	long _expirationDate;
     
