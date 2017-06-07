@@ -9,7 +9,7 @@ And it helps you to format your content.
 
 Example:
 ```cpp
-Pusher pusher("xxxxxx.pem");
+Pusher pusher("xxxxxx.pem", "pass_phrase"); // or Pusher pusher("xxxxxx.pem", "");
 pusher.isSandBox = true;
 
 vector<string> tokenStringList;

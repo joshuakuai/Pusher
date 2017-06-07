@@ -30,8 +30,9 @@
 #include <string.h>
 #include <unistd.h>
 
-Pusher::Pusher(string cerFileName) {
+Pusher::Pusher(string cerFileName, string passWord) {
 	_cerFileName = cerFileName;
+	_passWord = passWord;
 	isSandBox = true;
     _expirationDate = time(NULL) + 86400; // default expiration date set to 1 day
 }
@@ -132,6 +133,9 @@ void Pusher::prepareConnect(string pushContent) {
 		ERR_print_errors_fp(stderr);
 		exit(1);
 	}
+
+	if (_passWord.length() > 0)
+		SSL_CTX_set_default_passwd_cb_userdata(ctx, (void*)_passWord.c_str());
     
 	if (SSL_CTX_use_certificate_file(ctx, _cerFileName.c_str(),
                                      SSL_FILETYPE_PEM) <= 0) {
